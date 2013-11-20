@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+
+compass watch --config config.rb
+

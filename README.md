@@ -1,0 +1,5 @@
+# CSS Versioning with Compass
+
+Distributing HTML, CSS, and sprites through a CDN or other form of HTTP cache can cause issues when breaking changes are made to two or more files that need to be deployed simultaneously. Compass handles some of this internally when generating spites by appending a versioning hash to the generated PNG file. This helps, but doesn't completely solve the issue. For example, if interdependent HTML and CSS changes are deployed at the same time, HTTP edge caches could inadvertently serve old HTML with new CSS (or vise versa). This has the potential to break page layout and appearance unnecessarily.
+
+This example project solves the issue by also versioning CSS files using the MD5 hash of the file contents. This way, if old HTML is served from an edge cache, it will be able to access the old CSS it was designed to work with. If new HTML is served (that references an updated CSS file), edge caches will be forced to come back to the origin to retrieve it since the filename will have changed. This has the effect of completely eliminating the issue of HTML / CSS version mismatches without forcing a complete cache invalidation.
